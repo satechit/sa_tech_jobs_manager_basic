@@ -1,0 +1,23 @@
+.jobsp_badge {
+  background-color: #0073aa !important;
+  color: #fff !important;
+  padding: 2px 5px !important;
+  border: 1px solid #c0c0c0;
+  border-radius: 50% !important;
+  font-size: 80% !important;
+  font-weight: bold;
+}
+.jobsp_badge_red {
+  background-color: #ff2f36 !important;
+  color: #fff !important;
+  padding: 2px 5px !important;
+  border: 1px solid #c0c0c0;
+  border-radius: 50% !important;
+  font-size: 80% !important;
+  font-weight: bold;
+}
+.wp-submenu .jobsp_badge,
+.wp-submenu .jobsp_badge_red {
+  float: right;
+}
+/*# sourceMappingURL=admin_header.css.map */

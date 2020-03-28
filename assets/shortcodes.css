@@ -1,0 +1,451 @@
+div.satech_job_listings {
+  display: grid;
+  grid-template-columns: auto 150px 200px;
+  border-bottom: 1px solid #c9c9c9;
+  margin-bottom: 10px;
+}
+@media only screen and (min-width: 720px) and (max-width: 959px) {
+  div.satech_job_listings {
+    display: block !important;
+  }
+}
+@media (max-width: 720px) {
+  div.satech_job_listings {
+    display: block !important;
+  }
+}
+div.satech_job_listings a {
+  text-decoration: none !important;
+}
+@media only screen and (min-width: 720px) and (max-width: 959px) {
+  div.satech_job_listings .div1 {
+    display: block !important;
+  }
+}
+@media (max-width: 720px) {
+  div.satech_job_listings .div1 {
+    display: block !important;
+  }
+}
+div.satech_job_listings .div1 .title {
+  font-weight: bold;
+  font-size: 130%;
+}
+div.satech_job_listings .div1 .desc {
+  padding: 10px;
+}
+@media only screen and (min-width: 720px) and (max-width: 959px) {
+  div.satech_job_listings .div2 {
+    display: block;
+  }
+}
+@media (max-width: 720px) {
+  div.satech_job_listings .div2 {
+    display: block;
+  }
+}
+div.satech_job_listings .div3 {
+  text-align: right;
+}
+@media only screen and (min-width: 720px) and (max-width: 959px) {
+  div.satech_job_listings .div3 {
+    display: block;
+    text-align: left;
+  }
+}
+@media (max-width: 720px) {
+  div.satech_job_listings .div3 {
+    display: block;
+    text-align: left;
+  }
+}
+#satech_jobs_search {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+#apply_job_btn {
+  margin-top: 10px;
+}
+.apply_link {
+  margin-bottom: 10px !important;
+}
+div.jobsP_files {
+  border-top: 1px solid #c9c9c9;
+  margin: 10px 0;
+  padding-top: 10px;
+}
+div.jobsP_files a {
+  font-weight: bold;
+}
+td.right {
+  text-align: right !important;
+}
+table.satech_table {
+  border-collapse: collapse;
+  width: 100% !important;
+  border: 0;
+}
+table.satech_table tbody tr {
+  border-bottom: 1px solid #000;
+}
+table.satech_table tbody tr td {
+  border: 0 !important;
+}
+table.satech_table tbody tr td .title {
+  font-weight: bold;
+  font-size: 110%;
+  text-transform: uppercase;
+}
+table.satech_table tbody tr td .category {
+  font-size: 80%;
+  font-style: italic;
+  color: #666;
+}
+table.satech_table tbody tr td .location i {
+  color: #7e7ecc;
+}
+table.satech_table tbody tr td .description {
+  font-variant: small-caps;
+  font-size: 100%;
+  margin-top: 10px;
+  line-height: 1.5;
+  color: #000 !important;
+}
+table.satech_table tbody tr td small {
+  float: right;
+  background-color: #c0c0c0 !important;
+  color: #000;
+  padding: 1px 5px;
+  font-size: 50%;
+}
+table.satech_table tbody tr td .location {
+  font-size: 15px;
+}
+table.satech_table a.apply_link {
+  float: right;
+  background-color: #0073aa;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 1px 8px;
+}
+.job_detail_link_div {
+  border-top: 1px solid #c0c0c0;
+  margin-top: 10px;
+  padding-top: 10px;
+  display: none;
+}
+table.single_line_table {
+  border-collapse: collapse;
+  width: 100%;
+}
+table.single_line_table tr td .title {
+  font-weight: bold;
+}
+table.single_line_table tr td .job_type {
+  font-size: 80%;
+  color: #666;
+  font-style: italic;
+}
+table.single_line_table tr td .location {
+  float: right;
+  font-size: 90%;
+  padding: 0 5px;
+}
+table.single_line_table tr td .location i {
+  color: #7e7ecc;
+  font-size: 100%;
+}
+table.single_line_table tr td .link {
+  float: right;
+  padding: 0 5px;
+}
+table.single_line_table tr td .link a {
+  font-size: 90%;
+  text-decoration: none !important;
+}
+div.no_jobs {
+  padding: 10px;
+}
+div.no_jobs h1 {
+  text-align: center !important;
+  font-style: italic !important;
+}
+.ezdz-dropzone {
+  width: 100%;
+  height: 200px;
+  line-height: 200px;
+  border: 3px dashed #d3d3d3;
+  border-radius: 0;
+}
+.ezdz-dropzone div {
+  line-height: 200px;
+}
+.ezdz-enter {
+  background-color: #c98bcc;
+}
+.ezdz-enter div {
+  color: #fff !important;
+}
+.ezdz-reject {
+  background-color: #c00;
+}
+.ezdz-reject div {
+  color: #fff !important;
+}
+.ezdz-accept {
+  background-color: lightgreen;
+}
+.ezdz-accept div {
+  color: #fff !important;
+}
+@media only screen and (min-device-width: 320px) and (max-device-width: 768px) {
+  .is-hidden-mobile {
+    display: none;
+  }
+}
+@media only screen and (min-device-width: 769px) {
+  .is-hidden-desktop {
+    display: none;
+  }
+}
+div.application_details h3 {
+  margin: 5px 0;
+}
+div.application_details div.field {
+  margin-bottom: 10px;
+}
+div.application_details div.field label.label {
+  color: #000 !important;
+  padding: 5px 0 !important;
+}
+div.application_details div.field div.control input.input,
+div.application_details div.field div.control textarea.textarea {
+  padding: 10px;
+  width: 100%;
+}
+div.application_details div.field .iti--allow-dropdown input,
+div.application_details div.field .iti--allow-dropdown input[type=text],
+div.application_details div.field .iti--allow-dropdown input[type=tel],
+div.application_details div.field .iti--separate-dial-code input,
+div.application_details div.field .iti--separate-dial-code input[type=text],
+div.application_details div.field .iti--separate-dial-code input[type=tel] {
+  padding-left: 52px !important;
+}
+div.application_details div.columns {
+  clear: both !important;
+  clear-after: both !important;
+}
+div.application_details div.columns .is-6 {
+  width: 50%;
+  display: inline-block;
+  float: left;
+}
+div.application_details div.columns .is-6:first-child {
+  padding-right: 5px;
+}
+@media (max-width: 723px) {
+  div.application_details div.columns .is-6 {
+    width: 100%;
+    display: block;
+    padding-right: 0 !important;
+    padding-bottom: 10px;
+  }
+}
+div.application_details div.columns:after {
+  content: ' ';
+  width: 100%;
+  clear-after: both;
+  clear: both;
+  margin-bottom: 10px;
+}
+.center {
+  text-align: center !important;
+}
+.satech_loader {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: visible;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.satech_loader:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.satech_loader:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.satech_loader:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+div.mobile div.record {
+  padding: 20px;
+  border: 1px solid #c9c9c9;
+  margin-bottom: 20px;
+  box-shadow: 3px 3px 3px 1px #ccc;
+  -moz-box-shadow: 3px 3px 3px 1px #ccc;
+  -o-box-shadow: 3px 3px 3px 1px #ccc;
+  -webkit-box-shadow: 3px 3px 3px 1px #ccc;
+}
+div.mobile div.record div.title {
+  font-size: 150%;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+div.mobile div.record a.link {
+  margin-top: 5px;
+  font-weight: bold;
+  display: block;
+}
+.iti {
+  display: block !important;
+}
+.single_job_listing .meta {
+  list-style: none outside;
+  padding: 0;
+  margin: 0 0 1.5em;
+  overflow: hidden;
+  zoom: 1;
+  clear: both;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  font-family: inherit;
+}
+.single_job_listing .meta li {
+  margin: 0 1em 0 0;
+  padding: .5em;
+  float: left;
+  line-height: 1em;
+  color: #999;
+}
+.single_job_listing .meta .job-type {
+  background-color: #39c;
+  color: #fff;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.mb10 {
+  margin-bottom: 10px;
+}
+.hide {
+  display: none;
+}
+.clearDiv {
+  clear: both;
+  display: block;
+  width: 100%;
+  height: 5px;
+}
+.mb20 {
+  margin-bottom: 20px !important;
+}
+.mt20 {
+  margin-top: 20px !important;
+}
+.text-right {
+  text-align: right !important;
+}
+.text-left {
+  text-left: right !important;
+}
+.pull-right {
+  float: right !important;
+}
+/*# sourceMappingURL=shortcodes.css.map */

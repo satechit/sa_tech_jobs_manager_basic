@@ -1,0 +1,31 @@
+h1.atitle {
+  border: 1px solid #c9c9c9;
+  background-color: #ddd;
+  line-height: 30px;
+  display: block;
+  height: 30px;
+  padding: 10px;
+  cursor: pointer;
+  margin-top: 5px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+div.acontent {
+  border-right: 1px solid #c9c9c9;
+  border-left: 1px solid #c9c9c9;
+  border-bottom: 1px solid #c9c9c9;
+  margin-top: 0 !important;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: none;
+}
+div.acontent b {
+  font-size: 120%;
+}
+div.acontent ul {
+  margin-left: 15px;
+  list-style-type: square;
+}
+/*# sourceMappingURL=user_manual.css.map */

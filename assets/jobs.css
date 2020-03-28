@@ -1,0 +1,9 @@
+.table tbody tr:last-child td,
+.table tbody tr:last-child th {
+  border-bottom-width: 1px;
+}
+#search_text {
+  width: 100%;
+  border: 1px solid #c9c9c9;
+}
+/*# sourceMappingURL=jobs.css.map */
