@@ -23,7 +23,7 @@ $rows = $jobs->get_jobs( [
 if ( count( $rows ) > 0 ) {
 	?>
 	<div class="is-hidden-mobile">
-		<input type="search" id="satech_jobs_search" placeholder="<?php esc_attr_e( 'Search in jobs ..', self::DOMAIN ) ?>" />
+		<input type="search" id="satech_jobs_search" placeholder="Search in jobs .." />
 	</div>
 	<?php
 }

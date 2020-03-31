@@ -51,8 +51,7 @@
                 <b>{%=row.job_category_name%}</b><br>
                 (<a title="Apply job link" href="{%=row.apply_job_link%}" target="_blank"><i>{%=row.job_title%}</i></a>)
             </td>
-            <td class="is-hidden-mobile">{%=row.received_time_formatted%}<br>(<i>{%=row.received_time_ago%} ago</i>)</td>
-            <td>
+            <td class="is-hidden-mobile">{%=row.received_time_formatted%}<br>(<i>{%=row.received_time_ago%} ago</i>)
                 <div class="is-pulled-right is-hidden-desktop">
                     {% if (row.deleted==1) { %}
                         <a data-id="{%=row.id%}" class="restore_single_app mygreen" href="javascript:;">Restore</a>
@@ -60,14 +59,6 @@
                         <a data-id="{%=row.id%}" class="del_single_app myred" href="javascript:;">Trash</a>
                     {% } %}
                 </div>
-
-                <!--div class="starrr" data-rating="{%=row.rating%}" data-id="{%=row.id%}"></div-->
-                <select class="barrating" data-id="{%=row.id%}" data-text="{%=row.id%}">
-                    <option value=""></option>
-                    {% for (i=1; i<=5; i++) { %}
-                        <option {%=i==row.rating?'selected':''%} value="{%=i%}">{%=i%}</option>
-                    {% } %}
-                </select>
             </td>
         </tr>
         {% } %}
@@ -101,101 +92,33 @@
                     <li data-target="tabJobAd" class="">
                         <a>
                             <span class="icon is-small is-hidden-mobile"><i class="fa fa-address-card-o" aria-hidden="true"></i></span>
-                            <span class=""><?php esc_attr_e('Job Ad', self::DOMAIN) ?></span>
+                            <span class="">Job Ad</span>
                         </a>
                     </li>
                     <li data-target="tab3" id="emailTabLink">
                         <a>
                             <span class="icon is-small is-hidden-mobile"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-                            <span><?php esc_attr_e('Email', self::DOMAIN) ?></span>
+                            <span>Email</span>
                         </a>
                     </li>
                     {% if ( typeof row.cv.url_real != 'undefined' ) { %}
                     <li data-target="tab2">
                         <a>
                             <span class="icon is-small is-hidden-mobile"><i class="fa fa-file-o" aria-hidden="true"></i></span>
-                            <span><?php esc_attr_e('Resume', self::DOMAIN) ?></span>
+                            <span>Resume</span>
                         </a>
                     </li>
                     {% } %}
-                    <li data-target="tab_mail_logs">
-                        <a>
-                            <span class="icon is-small is-hidden-mobile"><i class="fa fa-files-o" aria-hidden="true"></i></span>
-                            <span class="is-hidden-mobile"><?php esc_attr_e('Application Logs', self::DOMAIN) ?></span>
-                            <span class="is-hidden-desktop"><?php esc_attr_e('Logs', self::DOMAIN) ?></span>
-                        </a>
-                    </li>
                   </ul>
                 </div>
                 <div class="tab-content">
-                    <div id="tab_mail_logs">
-                        {% for(i in o.logs) { log = o.logs[i]; %}
-                        <article class="message is-light log_article">
-                            <div class="message-header">
-                                <p class="log_title">{%=log.log_title%}</p>
-                                <i class="fa fa-caret-down" aria-hidden="true"></i>
-                            </div>
-                            <div class="message-body is-clearfix hide">
-                                <div class="is-pulled-right block is-hidden-mobile">
-                                    <i class="fa fa-user" aria-hidden="true"></i> {%=log.sent_by_name%}<br>
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i> {%=log.datetime_formatted%}<br>
-                                    IP: {%=log.ip%}
-                                </div>
-                                {%#log.log%}
-                            </div>
-                        </article>
-                        {% } %}
-                    </div>
                     <div id="tab3">
-                        <div class="notification is-info hide" id="email_notification_message">
-                            Application status will be changed with this email.
+                        <div class="notification is-warning" id="email_notification_message">
+                            This featuer is available only in Premium version.
+                            <p style="padding-top:20px;">
+                            Click <a href="https://codecanyon.net/item/sa-tech-jobs-manager-for-wordpress/25987776">here</a> to buy premium version
+                            </p>
                         </div>
-                        <form id="email_form2">
-                            <input type="hidden" name="application_id" value="{%=row.id%}">
-                            <input type="hidden" name="command" value="send_email">
-                            <input type="hidden" name="action" value="<?php echo self::AjaxKey ?>">
-
-                            <div class="field">
-                                <label class="label" for="load_content_from_templates">
-                                    <?php esc_attr_e('Select email template', self::DOMAIN) ?>
-                                    <i class="i">(Only those templates will appear which are not attached to any event)</i>
-                                </label>
-                                <div class="control">
-                                    <div class="select is-fullwidth">
-                                        <select id="load_content_from_templates" class="noarrow" data-id="{%=o.row.id%}">
-                                            <option value="">(select email template)</option>
-                                            {% for(index in o.templates) { template = o.templates[index]; %}
-                                                <option value="{%=template.id%}">{%=template.subject%}</option>
-                                            {% } %}
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <label class="label" for="email_email">Email recipient</label>
-                            <div class="field has-addons">
-                                <div class="control is-expanded has-icons-left has-icons-right">
-                                    <input class="input" type="email" id="email_email" name="email" placeholder="Text input" value="{%=row.applicant_email%}" required="required" readonly>
-                                    <span class="icon is-small is-left">
-                                      <i class="fa fa-at"></i>
-                                    </span>
-                                </div>
-                                <div class="control">
-                                    <button class="button button2 is-primary" id="email_btn2">Send Email</button>
-                                </div>
-                            </div>
-                            <div class="field lh2" id="fields"></div>
-                            <div class="field">
-                                <label class="label" for="email_subject">Email subject</label>
-                                <div class="control">
-                                    <input class="input" type="text" placeholder="Email subject" name="subject" id="email_subject" required>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <div class="control">
-                                    <textarea class="textarea" name="content" id="email_message" required></textarea>
-                                </div>
-                            </div>
-                        </form>
                     </div>
                     <div id="tabJobAd">
                         <div class="card">
@@ -210,47 +133,47 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td class="is-hidden-mobile w220"><?php esc_attr_e('Job Title', self::DOMAIN) ?>:</td>
-                                            <td><b class="is-hidden-desktop"><?php esc_attr_e('Job Title', self::DOMAIN) ?>:<br></b> {%=row.job_title%}</td>
+                                            <td class="is-hidden-mobile w220">Job Title:</td>
+                                            <td><b class="is-hidden-desktop">Job Title:<br></b> {%=row.job_title%}</td>
                                         </tr>
                                         <tr>
-                                            <td class="is-hidden-mobile"><?php esc_attr_e('Job Category', self::DOMAIN) ?>:</td>
-                                            <td><b class="is-hidden-desktop"><?php esc_attr_e('Job Category', self::DOMAIN) ?>:<br></b> {%=row.job_category_name%}</td>
+                                            <td class="is-hidden-mobile">Job Category:</td>
+                                            <td><b class="is-hidden-desktop">Job Category:<br></b> {%=row.job_category_name%}</td>
                                         </tr>
                                         {% if (row.job_row) { %}
                                             <tr>
-                                                <td class="is-hidden-mobile"><?php esc_attr_e('Location', self::DOMAIN) ?>:</td>
-                                                <td><b class="is-hidden-desktop"><?php esc_attr_e('Location', self::DOMAIN) ?>:<br></b> {%=row.job_row.location%}</td>
+                                                <td class="is-hidden-mobile">Location:</td>
+                                                <td><b class="is-hidden-desktop">Location:<br></b> {%=row.job_row.location%}</td>
                                             </tr>
                                             <tr>
-                                                <td class="is-hidden-mobile"><?php esc_attr_e('Job Status', self::DOMAIN) ?>:</td>
-                                                <td><b class="is-hidden-desktop"><?php esc_attr_e('Job Status', self::DOMAIN) ?>:<br></b> {%#row.job_row.is_active==1?'<span class="tag is-success">Active</span>':'<span class="tag is-danger">InActive</span>'%}</td>
+                                                <td class="is-hidden-mobile">Job Status:</td>
+                                                <td><b class="is-hidden-desktop">Job Status:<br></b> {%#row.job_row.is_active==1?'<span class="tag is-success">Active</span>':'<span class="tag is-danger">InActive</span>'%}</td>
                                             </tr>
                                             <tr>
-                                                <td class="is-hidden-mobile"><?php esc_attr_e('Views', self::DOMAIN) ?>:</td>
-                                                <td><b class="is-hidden-desktop"><?php esc_attr_e('Views', self::DOMAIN) ?>:<br></b> {%=row.job_row.views%}</td>
+                                                <td class="is-hidden-mobile">Views:</td>
+                                                <td><b class="is-hidden-desktop">Views:<br></b> {%=row.job_row.views%}</td>
                                             </tr>
                                             <tr>
-                                                <td class="is-hidden-mobile"><?php esc_attr_e('Applications', self::DOMAIN) ?>:</td>
-                                                <td><b class="is-hidden-desktop"><?php esc_attr_e('Applications', self::DOMAIN) ?>:<br></b> {%=row.job_applictions_counter%}</td>
+                                                <td class="is-hidden-mobile">Applications:</td>
+                                                <td><b class="is-hidden-desktop">Applications:<br></b> {%=row.job_applictions_counter%}</td>
                                             </tr>
                                             <tr>
-                                                <td class="is-hidden-mobile"><?php esc_attr_e('Posted Date', self::DOMAIN) ?>:</td>
-                                                <td><b class="is-hidden-desktop"><?php esc_attr_e('Posted Date', self::DOMAIN) ?>:<br></b> {%=row.job_row.added_date%}</td>
+                                                <td class="is-hidden-mobile">Posted Date:</td>
+                                                <td><b class="is-hidden-desktop">Posted Date:<br></b> {%=row.job_row.added_date%}</td>
                                             </tr>
                                             <tr>
-                                                <td class="is-hidden-mobile"><?php esc_attr_e('Last Submitted Application', self::DOMAIN) ?>:</td>
-                                                <td><b class="is-hidden-desktop"><?php esc_attr_e('Last Submitted Application', self::DOMAIN) ?>:<br></b> {%=row.last_submitted_date?row.last_submitted_date:'(no date)'%}</td>
+                                                <td class="is-hidden-mobile">Last Submitted Application:</td>
+                                                <td><b class="is-hidden-desktop">Last Submitted Application:<br></b> {%=row.last_submitted_date?row.last_submitted_date:'(no date)'%}</td>
                                             </tr>
                                             <tr>
-                                                <td class="is-hidden-mobile"><?php esc_attr_e('Expiry Date', self::DOMAIN) ?>:</td>
-                                                <td><b class="is-hidden-desktop"><?php esc_attr_e('Expiry Date', self::DOMAIN) ?>:<br></b> {%=row.job_row.expiry_date%}</td>
+                                                <td class="is-hidden-mobile">Expiry Date:</td>
+                                                <td><b class="is-hidden-desktop">Expiry Date:<br></b> {%=row.job_row.expiry_date%}</td>
                                             </tr>
                                         {% } %}
                                     </tbody>
                                 </table>
                                 <a class="button is-info is-small blur_out" href="admin.php?page=SAjobsF_jobs_add_page&edit={%=row.ad_id%}">
-                                    <i class="fa fa-edit"></i> <?php esc_attr_e('Edit Job', self::DOMAIN) ?>
+                                    <i class="fa fa-edit"></i> Edit Job
                                 </a>
                             </div>
                         </div>
@@ -276,12 +199,12 @@
                                                         <td>{%=row.applicant_email%}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="is-hidden-mobile"><?php esc_attr_e('Contact', self::DOMAIN) ?>:</td>
+                                                        <td class="is-hidden-mobile">Contact:</td>
                                                         <td><a href="tel:{%=row.applicant_contact%}">{%=row.applicant_contact%}</a></td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="is-hidden-mobile"><?php esc_attr_e('Application ID', self::DOMAIN) ?>:</td>
-                                                        <td><span class="is-hidden-desktop"><?php esc_attr_e('Application ID', self::DOMAIN) ?>:</span> {%=row.id%}</td>
+                                                        <td class="is-hidden-mobile">Application ID:</td>
+                                                        <td><span class="is-hidden-desktop">Application ID:</span> {%=row.id%}</td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2"><b>Cover Letter:</b><br>
@@ -311,26 +234,10 @@
                     </div>
                     <div id="tab2">
                         {% if ( typeof row.cv.url_real != 'undefined' ) { %}
-                            {% if ( is_image_file(row.cv.url_real) ) { %}
-                                <div class="text-center mb5">
-                                    <a class="button is-primary file_link2 blur_out" download title="Download" href="{%=row.cv.url_real%}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> <?php esc_attr_e('Download Resume', self::DOMAIN) ?></a>
-                                </div>
-                                <img src="{%=row.cv.url_real%}" class="w100p">
-                            {% } else {
-                                //url = "https://view.officeapps.live.com/op/view.aspx?src=" + encodeURIComponent(row.cv.url_real);
-                                //url = "https://docs.google.com/viewer?embedded=true&hl=en&pid=explorer&efh=false&a=v&chrome=false&url=" + encodeURIComponent(row.cv.url_real);
-                                url = "https://docs.google.com/viewerng/viewer?url=" + encodeURIComponent(row.cv.url_real) + "&embedded=true";
-                                 %}
-                                <div class="text-center mb5">
-                                    <a class="button is-primary file_link2 blur_out" download title="Download" href="{%=row.cv.url_real%}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> <?php esc_attr_e('Download Resume', self::DOMAIN) ?></a>
-                                </div>
-                                <iframe id="doc_iframe" src="{%=url%}" frameborder="0"></iframe>
-                                <!--object width="100%" data="{%=url%}" id="doc_object">
-                                    <embed src="{%=url%}">
-
-                                    </embed>
-                                </object-->
-                            {% } %}
+                            <div class="text-center mb5">
+                                <a class="button is-primary file_link2 blur_out" download title="Download" href="{%=row.cv.url_real%}" target="_blank"><i class="fa fa-download" aria-hidden="true"></i> Download Resume</a>
+                            </div>
+                            <img src="{%=row.cv.url_real%}" class="w100p">
                         {% } %}
                     </div>
                 </div>
@@ -346,49 +253,6 @@
                   </div>
                 </article>
 
-                <article class="message is-small">
-                  <div class="message-header">
-                    <p>Actions</p>
-                  </div>
-                  <div class="message-body">
-                    <!--div class="starrr" data-rating="{%=row.rating%}" data-id="{%=row.id%}"></div-->
-                        <select class="barrating" data-id="{%=row.id%}" data-text="{%=row.id%}">
-                            <option value=""></option>
-                            {% for (i=1; i<=5; i++) { %}
-                                <option {%=i==row.rating?'selected':''%} value="{%=i%}">{%=i%}</option>
-                            {% } %}
-                        </select>
-                  </div>
-                  <div class="message-body">
-                    <select class="application_action" data-id="{%=row.id%}">
-                    <option value="">(select action)</option>
-                    {% for(i in Status) { %}
-                        {% if (Status[i] > 1) { string = i.replace('ed', ''); string = (string=='Interview')?'Schedule Interview':string; %}
-                        <option value="{%=Status[i]%}">{%=string%}</option>
-                        {% } %}
-                    {% } %}
-                    </select>
-                  </div>
-                </article>
-
-                {% note = o.notes; %}
-                <nav class="panel is-small">
-                    <p class="panel-heading">
-                        Notes
-                    </p>
-                    <div class="panel-block">
-                        <p class="control has-icons-left">
-                            <input class="input is-loading" type="text" placeholder="Add new note" id="new_note_text">
-                            <span class="icon is-left"><i class="fa fa-sticky-note-o" aria-hidden="true"></i></span>
-                        </p>
-                        <button type="button" data-id="{%=row.id%}" id="add_note_btn" class="button is-primary"><i class="fa fa-plus"></i></button>
-                    </div>
-                    <div id="notes_panel">
-                    {% for (i in note) { note_row = note[i]; %}
-                        {% include('notes_row_tmpl', note_row); %}
-                    {% } %}
-                    </div>
-                </nav>
             </div>
         </div>
     </div>

@@ -9,7 +9,6 @@ jQuery(document).ready(function ($) {
         .on('change', '#current-page-selector', AR.change_page_number)
         .on('click', '#doaction', AR.bulkAction)
         .on('click', '.view_button', AR.viewJob)
-        .on('change', '.application_action', AR.application_action)
         .on('change', '#filter_cats', AR.changeCategory)
         .on('click', '.del_single_app', AR.delSingleApp)
         .on('click', '.restore_single_app', AR.restoreSingleApp)
@@ -117,29 +116,6 @@ var Admin_received = (function () {
                 $('a[data-field=clear_all]').removeClass('current');
                 $('a.filter_link[data-value=' + Url.queryString('status') + ']').addClass('current');
             }
-            $('.barrating').each(function () {
-                var id = $(this).attr('data-id');
-                $(this).barrating({
-                    theme: 'fontawesome-stars',
-                    onSelect: function (value, text, event) {
-                        $.ajax({
-                            url: ajaxurl,
-                            method: 'POST',
-                            data: { action: jobsP.ajax_key, command: 'update_rating', id: id, rating: value },
-                            error: function (e1, e2, e3) {
-                                SATechJobsError(e3);
-                            }
-                        }).done(function (data) {
-                            AR.load_data();
-                            if (data.substr(0, 2) === 'OK') {
-                            }
-                            else {
-                                SATechJobsError(data);
-                            }
-                        });
-                    }
-                });
-            });
             AR.update_counter();
         });
     };
@@ -229,35 +205,7 @@ var Admin_received = (function () {
                 width: '100%',
                 afterShow: function () {
                     setTimeout(function () {
-                        $('.barrating').barrating({
-                            theme: 'fontawesome-stars',
-                            onSelect: function (value, text, event) {
-                                $.ajax({
-                                    url: ajaxurl,
-                                    method: 'POST',
-                                    data: { action: jobsP.ajax_key, command: 'update_rating', id: id, rating: value },
-                                    error: function (e1, e2, e3) {
-                                        SATechJobsError(e3);
-                                    }
-                                }).done(function (data) {
-                                    AR.load_data();
-                                    if (data.substr(0, 2) === 'OK') {
-                                    }
-                                    else {
-                                        SATechJobsError(data);
-                                    }
-                                });
-                            }
-                        });
                     }, 50);
-                    CKEDITOR.replace('email_message', {
-                        width: '100%',
-                        extraPlugins: 'autogrow',
-                        autoGrow_minHeight: 200,
-                        autoGrow_maxHeight: 600,
-                        autoGrow_bottomSpace: 50,
-                        removePlugins: 'resize,wsc,scayt',
-                    });
                 }
             });
             AR.load_data();
@@ -289,50 +237,6 @@ var Admin_received = (function () {
                 SATechJobsError(data);
             }
         });
-    };
-    Admin_received.prototype.application_action = function (e) {
-        e.preventDefault();
-        var id = $(this).attr('data-id');
-        var new_status = $(this).val();
-        $(this).val('');
-        changeStatuswithEmail = null;
-        $('#email_notification_message').addClass('hide');
-        if (new_status == Status['Interview']) {
-            $('#emailTabLink').trigger('click');
-            $('#email_subject').val('Loading ....');
-            CKEDITOR.instances.email_message.setData('Loading ....', function () {
-                this.checkDirty();
-            });
-            $('#email_notification_message').removeClass('hide');
-            $.ajax({
-                url: ajaxurl,
-                method: 'POST',
-                data: {
-                    action: jobsP.ajax_key,
-                    command: 'get_interview_email_content',
-                    id: id
-                },
-                error: function (e1, e2, e3) {
-                    SATechJobsError(e3);
-                }
-            }).done(function (data) {
-                $('#email_subject').val(data.subject);
-                CKEDITOR.instances.email_message.setData(data.content, function () {
-                    this.checkDirty();
-                });
-                changeStatuswithEmail = { id: id, new_status: new_status };
-            });
-        }
-        else if (new_status == Status['Rejected']) {
-            if (!confirm('Attention: this application will be rejected.'))
-                return false;
-            $.fancybox.close();
-            AR.changeStatusAjax(id, new_status);
-        }
-        else {
-            $.fancybox.close();
-            AR.changeStatusAjax(id, new_status);
-        }
     };
     Admin_received.prototype.changeCategory = function (e) {
         e.preventDefault();

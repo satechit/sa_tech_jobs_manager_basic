@@ -29,7 +29,6 @@ jQuery(document).ready(function ($) {
         .on('click', '.activate_link', Aj.ActiveDeactivate)
         .on('click', '#doaction', Aj.bulkAction)
         .on('blur', '#search', Aj.clearSearch)
-        .on('click', '.view_logs', Aj.viewLogs)
     ;
 });
 
@@ -81,9 +80,9 @@ class Admin_jobs {
             if (Url.queryString('is_active')) {
                 $('a[data-field=clear_all]').removeClass('current');
                 if (Url.queryString('is_active') == '1') {
-                    $('a[data-field=is_active][data-value=1]').addClass('current');
+                    $("a[data-field=is_active][data-value='1']").addClass('current');
                 } else if (Url.queryString('is_active') == '0') {
-                    $('a[data-field=is_active][data-value=0]').addClass('current');
+                    $("a[data-field=is_active][data-value='0']").addClass('current');
                 }
             } else if (Url.queryString('expired')) {
                 $('a[data-field=expired]').addClass('current');
@@ -433,32 +432,6 @@ class Admin_jobs {
             Url.updateSearchParam('s');
             Aj.load_jobs();
         }
-    }
-
-    viewLogs(e) {
-        e.preventDefault();
-
-        let id = $(this).attr('data-id');
-        $('.jobsP_loader').removeClass('hide');
-
-        $.ajax({
-            url: ajaxurl,
-            method: 'POST',
-            data: {id: id, action: jobsP.ajax_key, command: 'view_job_ad_logs'},
-            error: function (e1, e2, e3) {
-                SATechJobsError(e3);
-            }
-        }).always(function () {
-            $('.jobsP_loader').addClass('hide');
-        }).done(function (data) {
-            if (!data || data.length === 0) {
-                SATechJobsWarning('No logs available for this job');
-            } else {
-                let instance = $.fancybox.open(tmpl('logs_tmpl', data), {
-                    type: 'html'
-                });
-            }
-        });
     }
 }
 

@@ -864,6 +864,7 @@ var resultProto = {
     }
 };
 function satechjobs_strtotime(str, now) {
+    if (now === void 0) { now = null; }
     if (now == null) {
         now = Math.floor(Date.now() / 1000);
     }
@@ -1110,9 +1111,17 @@ function satechjobs_date(format, timestamp) {
         }
     };
     var _date = function (format, timestamp) {
-        jsdate = (timestamp === undefined ? new Date()
-            : (timestamp instanceof Date) ? new Date(timestamp)
-                : new Date(timestamp * 1000));
+        if (timestamp === void 0) { timestamp = null; }
+        var jsdate;
+        if (timestamp === undefined || timestamp === null) {
+            jsdate = new Date();
+        }
+        else if (timestamp instanceof Date) {
+            jsdate = new Date(timestamp);
+        }
+        else {
+            new Date(timestamp * 1000);
+        }
         return format.replace(formatChr, formatChrCb);
     };
     return _date(format, timestamp);

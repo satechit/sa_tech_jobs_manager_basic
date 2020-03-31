@@ -3,7 +3,7 @@
  * Plugin Name: SA Tech Jobs Manager (Basic)
  * Description: <strong>SA Tech Jobs Manager</strong> is a powerful but easy to use WordPress recruitment plugin. It is equally useful for both companies and individual recruiters.
  * Plugin URI: https://www.satechitcompany.com/free-sa-tech-jobs-manager-for-wordpress/
- * Version: 1.0.5
+ * Version: 1.0.9
  * Author: SA Tech IT Company
  * Author URI: https://www.satechitcompany.com
  */

@@ -129,7 +129,7 @@ class ReceivedJobs {
 					'name'     => basename( $row['cv_file'] ),
 					'path'     => $row['cv_file'],
 					'url'      => $this->obj->get_file_url( $row['cv_file'] ),
-					'url_real' => $wp_upload_dir['baseurl'] . '/satech_jobs/received/' . $row['id'] . '/' . basename( $row['cv_file'] ),
+					'url_real' => $wp_upload_dir['baseurl'] . '/satech_basic_jobs/received/' . $row['id'] . '/' . basename( $row['cv_file'] ),
 					'size'     => filesize( $row['cv_file'] ),
 					'type'     => mime_content_type( $row['cv_file'] ),
 				];
@@ -182,7 +182,7 @@ class ReceivedJobs {
 					'name'     => basename( $cv_file ),
 					'path'     => $cv_file,
 					'url'      => $this->obj->get_file_url( $cv_file ),
-					'url_real' => $wp_upload_dir['baseurl'] . '/satech_jobs/received/' . $row['id'] . '/' . basename( $cv_file ),
+					'url_real' => $wp_upload_dir['baseurl'] . '/satech_basic_jobs/received/' . $row['id'] . '/' . basename( $cv_file ),
 					'size'     => filesize( $cv_file ),
 					'type'     => mime_content_type( $cv_file ),
 				];
@@ -219,7 +219,7 @@ class ReceivedJobs {
 	public function get_other_files( $id ) {
 		$id    = (int) $id;
 		$array = wp_upload_dir();
-		$path  = $array['basedir'] . DIRECTORY_SEPARATOR . 'satech_jobs' . DIRECTORY_SEPARATOR . 'received' . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
+		$path  = $array['basedir'] . DIRECTORY_SEPARATOR . 'satech_basic_jobs' . DIRECTORY_SEPARATOR . 'received' . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
 		if ( ! is_dir( $path ) ) {
 			return [];
 		}
@@ -244,7 +244,7 @@ class ReceivedJobs {
 				'name'     => basename( $file ),
 				'path'     => $file,
 				'url'      => $this->obj->get_file_url( $file ),
-				'url_real' => $wp_upload_dir['baseurl'] . '/satech_jobs/received/' . $id . '/' . basename( $file ),
+				'url_real' => $wp_upload_dir['baseurl'] . '/satech_basic_jobs/received/' . $id . '/' . basename( $file ),
 				'size'     => filesize( $file ),
 				'type'     => mime_content_type( $file ),
 			];
@@ -256,7 +256,7 @@ class ReceivedJobs {
 	public function get_cv_file( $id ) {
 		$id    = (int) $id;
 		$array = wp_upload_dir();
-		$path  = $array['basedir'] . DIRECTORY_SEPARATOR . 'satech_jobs' . DIRECTORY_SEPARATOR . 'received' . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
+		$path  = $array['basedir'] . DIRECTORY_SEPARATOR . 'satech_basic_jobs' . DIRECTORY_SEPARATOR . 'received' . DIRECTORY_SEPARATOR . $id . DIRECTORY_SEPARATOR;
 		if ( ! is_dir( $path ) ) {
 			return '';
 		}
@@ -370,28 +370,6 @@ class ReceivedJobs {
 		}
 	}
 
-	public function change_status( $id, $new_status, $send_interview_email = false ) {
-		$id         = (int) $id;
-		$new_status = (int) $new_status;
-
-		if ( ! in_array( $new_status, array_values( self::Status ) ) ) {
-			return 'Invalid status';
-		}
-
-		try {
-			$row = $this->DB->where( 'id', $id )->getOne( $this->obj->Tables['job_applications'] );
-
-			$this->DB->where( 'id', $id )
-			         ->update( $this->obj->Tables['job_applications'], [ 'status' => $new_status ] );
-
-			Logs::save_log( 'Application status changed to ' . $this->get_status_text( $new_status ), $id );
-
-			return 'OK';
-		} catch ( \Exception $e ) {
-			return $e->getMessage();
-		}
-	}
-
 	public function delete_auto_jobs() {
 		$value = (int) $this->obj->get_option( 'remove_jobs_after_days' );
 		if ( $value < 1 ) {
@@ -414,7 +392,7 @@ class ReceivedJobs {
 	 * @return array
 	 * @throws \Exception
 	 */
-	public function get_job_categories(): array {
+	public function get_job_categories() {
 		try {
 			$rows = $this->DB->orderBy( 'job_category_name', 'ASC' )
 			                 ->get( $this->obj->Tables['job_applications'], null, 'DISTINCT job_category_name' );
@@ -425,24 +403,7 @@ class ReceivedJobs {
 		}
 	}
 
-	public function update_rating( $id, $rating ) {
-		$id     = (int) $id;
-		$rating = (int) $rating;
-
-		try {
-			$old_rating = (int) $this->DB->where( 'id', $id )
-			                             ->getValue( $this->obj->Tables['job_applications'], 'rating' );
-			$this->DB->where( 'id', $id )->update( $this->obj->Tables['job_applications'], [ 'rating' => $rating ] );
-
-			Logs::save_log( 'Job rating changed to ' . $rating . ' from ' . $old_rating, $id );
-
-			return 'OK';
-		} catch ( \Exception $e ) {
-			return $e->getMessage();
-		}
-	}
-
-	public function get_applicant_information( $id ): array {
+	public function get_applicant_information( $id ) {
 		$id = (int) $id;
 
 		try {
@@ -472,7 +433,7 @@ class ReceivedJobs {
 			'status'  => null,
 			'deleted' => 0,
 		];
-		$args    = wp_parse_args( $args, $default );
+		$args    = \wp_parse_args( $args, $default );
 
 		if ( ! is_null( $args['status'] ) ) {
 			$this->DB->where( 'status', $args['status'] );

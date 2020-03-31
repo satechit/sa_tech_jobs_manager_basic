@@ -43,7 +43,7 @@ class Jobs {
 		$this->DB  = $this->obj->DB2;
 
 		$array           = wp_upload_dir();
-		$this->FilesPath = $array['basedir'] . DIRECTORY_SEPARATOR . 'satech_jobs' . DIRECTORY_SEPARATOR;
+		$this->FilesPath = $array['basedir'] . DIRECTORY_SEPARATOR . 'satech_basic_jobs' . DIRECTORY_SEPARATOR;
 	}
 
 	/**
@@ -626,34 +626,6 @@ class Jobs {
 		}
 
 		return 'OK' . $id;
-	}
-
-	/**
-	 * Get cc email address attached with job application.
-	 *
-	 * @param $job_ad_id
-	 *
-	 * @return mixed
-	 * @throws \Exception
-	 */
-	public function get_cc_mail( $job_ad_id ) {
-		$job_ad_id = (int) $job_ad_id;
-
-		return $this->DB->where( 'id', $job_ad_id )->getValue( $this->obj->Tables['job_ads'], 'cc_email' );
-	}
-
-	/**
-	 * Get BCC email address attached with job application.
-	 *
-	 * @param $job_ad_id
-	 *
-	 * @return mixed
-	 * @throws \Exception
-	 */
-	public function get_bcc_mail( $job_ad_id ) {
-		$job_ad_id = (int) $job_ad_id;
-
-		return $this->DB->where( 'id', $job_ad_id )->getValue( $this->obj->Tables['job_ads'], 'bcc_email' );
 	}
 
 	/**

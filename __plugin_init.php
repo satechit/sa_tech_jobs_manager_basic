@@ -99,7 +99,7 @@ if ( ! class_exists( 'FreeSATechJobsManager' ) ) {
 		];
 
 		const DOMAIN = 'satech_jobs_domain';
-		const JOBS_P_TITLE = 'SA Tech Jobs Manager (Free)';
+		const JOBS_P_TITLE = "SA Jobs Manager";
 		const JOBS_P_PATH = __DIR__;
 		const JOBS_F_URL = JOBS_F_URL;
 		const URL = JOBS_F_URL;
@@ -107,8 +107,8 @@ if ( ! class_exists( 'FreeSATechJobsManager' ) ) {
 		const JOBS_P_CAPABILITY = 'manage_options';
 		const OPTIONS_KEY = 'SAJobsF_Jobs';
 
-		const CurrentDBVersion = '1.0';
-		const CurrentDBUpdateDate = '16-02-2020';
+		const CurrentDBVersion = '1.1';
+		const CurrentDBUpdateDate = '28-03-2020';
 		const AjaxKey = 'SA_jobsF_jobs_ajax';
 
 		public $is_perma_enabled;
@@ -187,8 +187,8 @@ if ( ! class_exists( 'FreeSATechJobsManager' ) ) {
 				add_filter( 'the_content', [ $this, 'applying_job_form' ] );
 			}
 
-			add_shortcode( 'sa_jobs_list_design1', [ $this, 'jobs_shortcode1' ] );
-			add_shortcode( 'sa_jobs_list_design2', [ $this, 'jobs_shortcode2' ] );
+			add_shortcode( 'sa_jobs_basic_list_design1', [ $this, 'jobs_shortcode1' ] );
+			add_shortcode( 'sa_jobs_basic_list_design2', [ $this, 'jobs_shortcode2' ] );
 
 			add_action( 'init', [ $this, 'load_plugin_textdomain' ] );
 
@@ -284,9 +284,6 @@ if ( ! class_exists( 'FreeSATechJobsManager' ) ) {
 				wp_enqueue_style( 'jobsP_intl_css', self::JOBS_F_URL . 'assets/intl-tel/css/intlTelInput.min.css' );
 				wp_enqueue_script( 'jobsP_intl_js', self::JOBS_F_URL . 'assets/intl-tel/js/intlTelInput.min.js', [ 'jquery' ] );
 
-				wp_enqueue_script( 'jobsP_ezdz_js', self::JOBS_F_URL . 'assets/ezdz/jquery.ezdz.min.js', [ 'jquery' ] );
-				wp_enqueue_style( 'jobsP_ezdz_css', self::JOBS_F_URL . 'assets/ezdz/jquery.ezdz.min.css' );
-
 				wp_localize_script( 'SAjobsF_jobs_submit', 'im_ajax_object', [
 					'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				] );
@@ -313,7 +310,7 @@ if ( ! class_exists( 'FreeSATechJobsManager' ) ) {
 				}
 				$jobs->view_update( $job_id );
 				include( __DIR__ . '/front-end/bulma.php' );
-				$content            .= ob_get_clean();
+				$content .= ob_get_clean();
 			}
 
 			return $content;
@@ -347,7 +344,7 @@ if ( ! class_exists( 'FreeSATechJobsManager' ) ) {
 
 			## Removing folders
 			$array      = wp_upload_dir();
-			$foler_path = $array['basedir'] . DIRECTORY_SEPARATOR . 'satech_jobs' . DIRECTORY_SEPARATOR;
+			$foler_path = $array['basedir'] . DIRECTORY_SEPARATOR . 'satech_basic_jobs' . DIRECTORY_SEPARATOR;
 			$this->delete_folder( $foler_path );
 
 			$this->install();
@@ -577,7 +574,6 @@ if ( ! class_exists( 'FreeSATechJobsManager' ) ) {
 					wp_enqueue_script( 'SAjobsF_jobs_jquery_url', 'https://cdnjs.cloudflare.com/ajax/libs/urljs/2.3.1/url.min.js', [ 'jquery' ], false, true );
 					wp_enqueue_style( 'SAjobsF_jobs_fa_css', self::JOBS_F_URL . 'assets/font-awesome-4.7.0/css/font-awesome.min.css' );
 					wp_enqueue_style( 'SAjobsF_jobs_jquery_confirm_css', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.css' );
-					//wp_enqueue_style( 'SAjobsF_jobs_jquery_confirm_css', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css' );
 					wp_enqueue_style( 'SAjobsF_jobs_jquery_fancybox_css', 'https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css' );
 
 					wp_enqueue_script( 'SAjobsF_jobs_jquery_confirm_js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.4/jquery-confirm.min.js', [ 'jquery' ], false, true );
@@ -594,31 +590,28 @@ if ( ! class_exists( 'FreeSATechJobsManager' ) ) {
 						wp_enqueue_style( 'jobsP_css_framework', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css' );
 						wp_enqueue_script( 'SAjobsF_jobs_custom_js', self::JOBS_F_URL . 'assets/js/admin_jobs.js', [ 'jquery' ], $this->getVersion(), true );
 						wp_localize_script( 'SAjobsF_jobs_custom_js', 'jobsP', $JS_Keys );
-						wp_enqueue_style( 'SAjobsF_jobs_jobs_css', self::JOBS_F_URL . 'assets/jobs.css', [], filemtime( self::JOBS_P_PATH . '/assets/jobs.css' ) );
+						wp_enqueue_style( 'SAjobsF_jobs_jobs_css', self::JOBS_F_URL . 'assets/jobs.css', [], $this->getVersion() );
 					} elseif ( $page == 'SAjobsF_jobs_received' ) {
 						wp_enqueue_style( 'jobsP_css_framework', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css' );
 						wp_enqueue_script( 'jquery-ui-tabs' );
-						wp_enqueue_style( 'SAjobsF_jobs_barrating_css', self::JOBS_F_URL . 'assets/barrating/themes/fontawesome-stars.css', [] );
-						wp_enqueue_script( 'SAjobsF_jobs_barrating_js', self::JOBS_F_URL . 'assets/barrating/jquery.barrating.min.js', [ 'jquery' ], false, true );
-						wp_enqueue_style( 'SAjobsF_jobs_received_css', self::JOBS_F_URL . 'assets/received.css', [], filemtime( self::JOBS_P_PATH . '/assets/received.css' ) );
+						wp_enqueue_style( 'SAjobsF_jobs_received_css', self::JOBS_F_URL . 'assets/received.css', [], $this->getVersion() );
 						wp_enqueue_script( 'SAjobsF_jobs_custom_js', self::JOBS_F_URL . 'assets/js/admin_received.js', [ 'jquery' ], $this->getVersion(), true );
 						wp_localize_script( 'SAjobsF_jobs_custom_js', 'jobsP', $JS_Keys );
-						wp_enqueue_script( 'SAjobsF_jobs_ckeditor', 'https://cdn.ckeditor.com/4.14.0/standard-all/ckeditor.js' );
 					} elseif ( $page == 'SAjobsF_jobs_settings' ) {
 						wp_enqueue_style( 'jobsP_css_framework', 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css' );
 						wp_enqueue_script( 'SAjobsF_jobs_settings', self::JOBS_F_URL . 'assets/js/admin_settings.js', [ 'jquery' ], $this->getVersion(), true );
 						wp_enqueue_script( 'SAjobsF_jobs_clipboard', 'https://cdnjs.cloudflare.com/ajax/libs/clipboard-polyfill/2.8.6/clipboard-polyfill.js', [ 'jquery' ], null, true );
 						wp_localize_script( 'SAjobsF_jobs_settings', 'jobsP', $JS_Keys );
-						wp_enqueue_style( 'SAjobsF_jobs_settings_css', self::JOBS_F_URL . 'assets/settings.css', [], filemtime( self::JOBS_P_PATH . '/assets/settings.css' ) );
+						wp_enqueue_style( 'SAjobsF_jobs_settings_css', self::JOBS_F_URL . 'assets/settings.css', [], $this->getVersion() );
 					} else if ( $page == 'SAjobsF_jobs_user_manual' ) {
-						wp_enqueue_style( 'SAjobsF_jobs_um_css', self::JOBS_F_URL . 'assets/user_manual.css', [], filemtime( self::JOBS_P_PATH . '/assets/user_manual.css' ) );
+						wp_enqueue_style( 'SAjobsF_jobs_um_css', self::JOBS_F_URL . 'assets/user_manual.css', [], $this->getVersion() );
 						wp_enqueue_script( 'SAjobsF_jobs_um_js', self::JOBS_F_URL . 'assets/js/admin_um.js', [ 'jquery' ], $this->getVersion(), true );
 					} else if ( $page == 'SAjobsF_jobs_add_page' ) {
 						wp_enqueue_script( 'SAjobsF_jobs_ckeditor', 'https://cdn.ckeditor.com/4.14.0/standard-all/ckeditor.js' );
 						wp_enqueue_script( 'SAjobsF_jobs_addjob_js', self::JOBS_F_URL . 'assets/js/admin_add_job.js', [ 'jquery' ], $this->getVersion(), true );
 					}
 
-					wp_enqueue_style( 'SAjobsF_jobs_custom_css', self::JOBS_F_URL . 'assets/admin_css.css', [], filemtime( self::JOBS_P_PATH . '/assets/admin_css.css' ) );
+					wp_enqueue_style( 'SAjobsF_jobs_custom_css', self::JOBS_F_URL . 'assets/admin_css.css', [], $this->getVersion() );
 					break;
 			}
 		}
@@ -636,10 +629,10 @@ if ( ! class_exists( 'FreeSATechJobsManager' ) ) {
 				'wp-blocks',
 				'wp-editor',
 				'wp-components',
-			], filemtime( plugin_dir_path( JOBSP_F_FILE ) . $blockPath ) );
+			], $this->getVersion() );
 
 			// Enqueue frontend and editor block styles
-			wp_enqueue_style( 'hello-gutenberg-block-css', plugins_url( $stylePath, JOBSP_F_FILE ), '', filemtime( plugin_dir_path( JOBSP_F_FILE ) . $stylePath ) );
+			wp_enqueue_style( 'hello-gutenberg-block-css', plugins_url( $stylePath, JOBSP_F_FILE ), '', $this->getVersion() );
 
 		}
 
@@ -949,7 +942,6 @@ if ( ! class_exists( 'FreeSATechJobsManager' ) ) {
 					'{job_category}'      => $row['job_category_name'],
 					'{job_title}'         => $row['job_title'],
 					'{title}'             => $row['job_title'],
-					'{rating}'            => $row['rating'],
 				];
 				$args['content'] = strtr( $args['content'], $Fields );
 			}

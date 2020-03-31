@@ -15,7 +15,7 @@ $array = wp_upload_dir();
 		var Status = <?php echo json_encode( ReceivedJobs::Status ) ?>;
 	</script>
 	<div class="wrap">
-		<h1 class="wp-heading-inline"><?php esc_attr_e( 'Job Applications', self::DOMAIN ) ?></h1>
+		<h1 class="wp-heading-inline">Job Applications</h1>
 		<hr class="wp-header-end">
 
 		<ul class='subsubsub'>
@@ -42,8 +42,8 @@ $array = wp_upload_dir();
 
 		<form class="search-form search-plugins is-hidden-mobile" method="get" id="search_form">
 			<p class="search-box">
-				<label class="screen-reader-text" for="search"><?php esc_attr_e('Search in job applications', self::DOMAIN); ?>:</label>
-				<input type="search" id="search" class="wp-filter-search" name="s" value="<?php echo $_GET['s'] ?? '' ?>" placeholder="<?php esc_attr_e('Search in job applications', self::DOMAIN); ?>..." />
+				<label class="screen-reader-text" for="search">Search in job applications:</label>
+				<input type="search" id="search" class="wp-filter-search" name="s" value="<?php echo $_GET['s'] ?? '' ?>" placeholder="Search in job applications..." />
 				<input type="submit" id="search-submit" class="button hide-if-js" value="Search Installed Plugins" />
 			</p>
 		</form>
@@ -53,11 +53,11 @@ $array = wp_upload_dir();
 			<input type="hidden" name="command" value="received_bulk_action">
 			<div class="tablenav top">
 				<div class="alignleft actions bulkactions">
-					<label for="bulk-action-selector-top" class="screen-reader-text"><?php esc_attr_e( "Select bulk action", self::DOMAIN ) ?></label>
+					<label for="bulk-action-selector-top" class="screen-reader-text">Select bulk action</label>
 					<select name="bulk-action" id="bulk-action-selector-top">
-						<option value="-1"><?php esc_attr_e( 'Bulk Actions', self::DOMAIN ) ?></option>
-						<option value="delete"><?php esc_attr_e( 'Delete', self::DOMAIN ) ?></option>
-						<option value="restore"><?php esc_attr_e( 'Restore', self::DOMAIN ) ?></option>
+						<option value="-1">Bulk Actions</option>
+						<option value="delete">Delete</option>
+						<option value="restore">Restore</option>
 					</select>
 					<input type="submit" id="doaction" class="button action" value="Apply">
 				</div>
@@ -67,7 +67,7 @@ $array = wp_upload_dir();
 					<span data-page="1" id="first_page_link" class="tablenav-pages-navspan button disabled" aria-hidden="true">«</span>
 					<span data-page="0" id="prev_page_link" class="tablenav-pages-navspan button disabled" aria-hidden="true">‹</span>
 					<span class="paging-input">
-						<label for="current-page-selector" class="screen-reader-text"><?php esc_attr_e( 'Current Page', self::DOMAIN ) ?></label>
+						<label for="current-page-selector" class="screen-reader-text">Current Page</label>
 						<input class="current-page" id="current-page-selector" type="text" name1="paged" value="1" size="1" aria-describedby="table-paging">
 						<span class="tablenav-paging-text"> of <span class="total-pages">1</span></span>
 					</span>
@@ -78,29 +78,28 @@ $array = wp_upload_dir();
 				<br class="clear">
 			</div>
 
-			<h2 class="screen-reader-text"><?php esc_attr_e( 'Categories list' ) ?></h2>
+			<h2 class="screen-reader-text">Categories list</h2>
 
-			<input type="search" id="search_text" class="wp-filter-search is-hidden-desktop" name="s" value="<?php echo $_GET['s'] ?? '' ?>" placeholder="<?php esc_attr_e('Search in job applications', self::DOMAIN); ?>..." />
+			<input type="search" id="search_text" class="wp-filter-search is-hidden-desktop" name="s" value="<?php echo $_GET['s'] ?? '' ?>" placeholder="Search in job applications..." />
 
 			<table class="wp-list-table widefat plugins" id="received_table">
 				<thead>
 				<tr>
 					<td id="cb" class="manage-column column-cb check-column is-hidden-mobile">
-						<label class="screen-reader-text" for="cb-select-all-1"><?php esc_attr_e( 'Select All', self::DOMAIN ) ?></label><input id="cb-select-all-1" type="checkbox">
+						<label class="screen-reader-text" for="cb-select-all-1">Select All</label><input id="cb-select-all-1" type="checkbox">
 					</td>
-					<th scope="col" class="manage-column column-primary column-applicant w10"><span class="is-hidden-desktop"><?php esc_attr_e( 'Job Applications', self::DOMAIN ) ?></span><span class="is-hidden-mobile"><?php esc_attr_e( 'ID', self::DOMAIN ) ?></span></th>
-					<th scope="col" class="manage-column column-primary column-name"><?php esc_attr_e( 'Applicant', self::DOMAIN ) ?></th>
-					<th scope="col" class="manage-column column-primary column-status"><?php esc_attr_e( 'Status', self::DOMAIN ) ?></th>
-					<th scope="col" class="manage-column column-primary column-applied"><?php esc_attr_e( 'Applied for', self::DOMAIN ) ?></th>
-					<th scope="col" class="manage-column column-primary column-applied"><?php esc_attr_e( 'Applied on', self::DOMAIN ) ?></th>
-					<th scope="col" class="manage-column column-is_active"><?php esc_attr_e( 'Rating', self::DOMAIN ) ?></th>
+					<th scope="col" class="manage-column column-primary column-applicant w10"><span class="is-hidden-desktop">Job Applications</span><span class="is-hidden-mobile">ID</span></th>
+					<th scope="col" class="manage-column column-primary column-name">Applicant</th>
+					<th scope="col" class="manage-column column-primary column-status">Status</th>
+					<th scope="col" class="manage-column column-primary column-applied">Applied for</th>
+					<th scope="col" class="manage-column column-primary column-applied">Applied on</th>
 				</tr>
 				</thead>
 				<tbody id="the-list">
 				<tr>
 					<th scope="row" class="check-column is-hidden-mobile"></th>
-					<td class="text-center" colspan="8">
-						<i class="fa fa-spin fa-spinner"></i> <?php esc_attr_e( 'Loading', self::DOMAIN ) ?> ....
+					<td class="text-center" colspan="6">
+						<i class="fa fa-spin fa-spinner"></i> Loading ....
 					</td>
 				</tr>
 				</tbody>

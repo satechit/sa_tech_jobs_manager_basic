@@ -1,5 +1,5 @@
 <div class="wrap ac-container">
-	<h1 class="wp-heading-inline"><?php esc_attr_e( 'User Manual', self::DOMAIN ) ?></h1>
+	<h1 class="wp-heading-inline">User Manual</h1>
 	<hr>
 
 	<h1 class="atitle">1. After Installation</h1>
@@ -27,8 +27,8 @@
 			We have two different page layouts/designs. You can use the one which suits your needs better. Paste one of the following shortcodes on any page where you want to advertise your jobs/show your job listings/openings.
 		</p>
 		<ul>
-			<li>For design 1 use <code>[sa_jobs_list_design1]</code></li>
-			<li>For design 2 use <code>[sa_jobs_list_design2]</code></li>
+			<li>For design 1 use <code>[sa_jobs_basic_list_design1]</code></li>
+			<li>For design 2 use <code>[sa_jobs_basic_list_design2]</code></li>
 		</ul>
 		<p>
 			For example, you want to show your job ads on the home page, open all pages and click on the home page. When the home page opens, paste one of the above-mentioned shortcodes there and click update. You are done, wasn’t that easy? Your job ads will now start appearing on your home page.

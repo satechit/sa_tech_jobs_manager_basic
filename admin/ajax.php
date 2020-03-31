@@ -217,21 +217,6 @@ switch ( $command ) {
 			echo $e->getMessage();
 		}
 		break;
-	case 'change_job_status':
-		$RH                       = new ReceivedJobs();
-		$_POST['id']              = $_POST['id'] ?? 0;
-		$_POST['status']          = $_POST['status'] ?? -1;
-		$_POST['interview_email'] = $_POST['interview_email'] ?? false;
-
-		echo $RH->change_status( $_POST['id'], $_POST['status'], $_POST['interview_email'] );
-		exit();
-		break;
-	case 'update_rating':
-		$RH              = new ReceivedJobs();
-		$_POST['id']     = $_POST['id'] ?? 0;
-		$_POST['rating'] = $_POST['rating'] ?? 0;
-		echo $RH->update_rating( $_POST['id'], $_POST['rating'] );
-		break;
 	case 'openEmail':
 		$RH          = new ReceivedJobs();
 		$_POST['id'] = $_POST['id'] ?? 0;
@@ -243,7 +228,6 @@ switch ( $command ) {
 
 			if ( ! empty( $_POST['application_id'] ) && ! empty( $_POST['new_status'] ) ) {
 				$RH = new ReceivedJobs();
-				$RH->change_status( $_POST['application_id'], $_POST['new_status'] );
 			}
 		} catch ( Exception $e ) {
 			echo $e->getMessage();

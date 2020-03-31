@@ -1,7 +1,7 @@
 <script type="text/x-tmpl" id="cats_blank_tmpl">
 	<tr>
         <th scope="row" class="check-column is-hidden-mobile"></th>
-        <td colspan="3" class="text-center"><i>-- <?php esc_attr_e('No job category added yet', 'jobsp-domain') ?> --</i></td>
+        <td colspan="3" class="text-center"><i>-- No job category added yet --</i></td>
 	</tr>
 </script>
 <script type="text/x-tmpl" id="cats_tmpl">
@@ -13,10 +13,10 @@
 		<td class="category plugin-title">
 			<strong>{%=row.category%}</strong>
 			<div class="row-actions visible">
-				<a data-id="{%=row.id%}" class="edit_link" href="#"><?php esc_attr_e('Edit', 'jobsp-domain') ?></a>
+				<a data-id="{%=row.id%}" class="edit_link" href="#">Edit</a>
 				{% if (row.job_count==0) { %}
 				    |
-				    <a data-id="{%=row.id%}" class="del_link myred" href="#"><?php esc_attr_e('Delete', 'jobsp-domain') ?></a>
+				    <a data-id="{%=row.id%}" class="del_link myred" href="#">Delete</a>
 				{% } %}
 			</div>
 		</td>

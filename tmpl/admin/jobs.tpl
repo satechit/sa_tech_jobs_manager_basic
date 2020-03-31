@@ -1,6 +1,6 @@
 <script type="text/x-tmpl" id="jobs_blank_tmpl">
 	<tr>
-        <td colspan="10" class="text-center"><i>-- <?php esc_attr_e('No job found', self::DOMAIN) ?> --</i></td>
+        <td colspan="10" class="text-center"><i>-- No job found --</i></td>
 	</tr>
 
 </script>
@@ -31,8 +31,6 @@
                     {% } else { %}
                         <a data-id="{%=row.id%}" href="javascript:;" class="activate_link" data-value="1">Activate</a>
                     {% } %}
-                    |
-                    <a data-id="{%=row.id%}" class="view_logs" href="?id={%=row.id%}"><?php esc_attr_e('Logs', self::DOMAIN) ?></a>
                     |
 					<a data-id="{%=row.id%}" class="del_link myred" href="#">Trash</a>
                 {% } %}

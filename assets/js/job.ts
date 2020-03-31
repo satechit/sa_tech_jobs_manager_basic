@@ -6,17 +6,6 @@ var $ = jQuery;
 
 jQuery(document).ready(function ($) {
     "use strict";
-    $('.drop_files').each(function () {
-        $(this).ezdz({
-            text: $(this).attr('data-label'),
-            reject: function (file, error) {
-                if (error.mimeType) {
-                    alert('Error: Please select valid document file.');
-                }
-            }
-        });
-    });
-
     $(document).on('submit', '#job_form', JF.submitJobForm)
         .on('click', '#apply_job_btn', JF.applyJobBtn)
         .on('change', '.file-input', JF.fileInput)
@@ -28,6 +17,7 @@ jQuery(document).ready(function ($) {
             return "e.g. " + selectedCountryPlaceholder;
         },
     });
+
 });
 
 class JobFrontend {

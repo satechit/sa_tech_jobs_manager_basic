@@ -11,8 +11,8 @@ $Jobs = new Jobs();
 $Cats = new Category();
 
 if ( $is_new && $id == 0 ) {
-	$row['description']     = $row['title'] = $row['location'] = $row['job_type'] = $row['salary_type'] = $row['last_update_time'] = $row['cc_email'] = $row['bcc_email'] = '';
-	$row['external_link']   = $row['currency_code'] = '';
+	$row['description']     = $row['title'] = $row['location'] = $row['job_type'] = $row['salary_type'] = $row['last_update_time'] = '';
+	$row['currency_code'] = '';
 	$row['expiry_date']     = date( 'Y-m-d', strtotime( '+30 days' ) );
 	$row['job_category_id'] = 0;
 	$row['salary']          = '';
@@ -39,7 +39,7 @@ $currencies = $Currency->get_currencies();
 <div class="wrap">
 	<a href="?page=SAjobsF_jobs_management" class="black"><i class="fa fa-times-circle fa-2x pull-right" aria-hidden="true"></i></a>
 
-	<h1 class="wp-heading-inline"><?php $is_new ? esc_attr_e( 'Add Job Ad', self::DOMAIN ) : esc_attr_e( 'Edit Job', self::DOMAIN ); ?></h1>
+	<h1 class="wp-heading-inline"><?php $is_new ? 'Add Job Ad' : 'Edit Job'; ?></h1>
 	<hr class="wp-header-end">
 
 	<form name="post" method="post" id="post">
@@ -66,12 +66,12 @@ $currencies = $Currency->get_currencies();
 					<div id="side-sortables" class="meta-box-sortables2">
 						<div id="pageparentdiv" class="postbox ">
 							<button type="button" class="handlediv" aria-expanded="true">
-								<span class="screen-reader-text">Toggle panel: <?php esc_attr_e( 'Job Attributes', self::DOMAIN ) ?></span><span class="toggle-indicator" aria-hidden="true"></span>
+								<span class="screen-reader-text">Toggle panel: Job Attributes</span><span class="toggle-indicator" aria-hidden="true"></span>
 							</button>
-							<h2 class="hndle"><span><?php esc_attr_e( 'Job Attributes', self::DOMAIN ) ?></span></h2>
+							<h2 class="hndle"><span>Job Attributes</span></h2>
 							<div class="inside">
 								<p class="post-attributes-label-wrapper">
-									<label class="post-attributes-label" for="job_category_id"><?php esc_attr_e( 'Category', self::DOMAIN ) ?></label>
+									<label class="post-attributes-label" for="job_category_id">Category</label>
 								</p>
 								<select name='job_category_id' id='job_category_id' required="required">
 									<option value="">(select category)</option>
@@ -83,17 +83,7 @@ $currencies = $Currency->get_currencies();
 								</select>
 
 								<p class="post-attributes-label-wrapper">
-									<label class="post-attributes-label" for="cc_email"><?php esc_attr_e( 'CC Email address', self::DOMAIN ) ?></label>
-								</p>
-								<input type="email" name="cc_email" id="cc_email" value="<?php echo esc_attr( $row['cc_email'] ) ?>">
-
-								<p class="post-attributes-label-wrapper">
-									<label class="post-attributes-label" for="bcc_email"><?php esc_attr_e( 'BCC Email address', self::DOMAIN ) ?></label>
-								</p>
-								<input type="email" name="bcc_email" id="bcc_email" value="<?php echo esc_attr( $row['bcc_email'] ) ?>">
-
-								<p class="post-attributes-label-wrapper">
-									<label class="post-attributes-label" for="expiry_date"><?php esc_attr_e( 'Expiry date', self::DOMAIN ) ?></label>
+									<label class="post-attributes-label" for="expiry_date">Expiry date</label>
 								</p>
 								<input min="<?php echo $is_new ? substr( current_time( 'mysql' ), 0, 10 ) : '' ?>" type="date" name="expiry_date" id="expiry_date" required="required" value="<?php echo esc_attr( date( 'Y-m-d', strtotime( $row['expiry_date'] ) ) ) ?>">
 
@@ -103,12 +93,7 @@ $currencies = $Currency->get_currencies();
 								<input type="text" name="location" id="location" value="<?php echo esc_attr( $row['location'] ); ?>">
 
 								<p class="post-attributes-label-wrapper">
-									<label class="post-attributes-label" for="external_link"><?php esc_attr_e( 'External Link', self::DOMAIN ) ?></label>
-								</p>
-								<input type="url" name="external_link" id="external_link" value="<?php echo esc_attr( $row['external_link'] ); ?>">
-
-								<p class="post-attributes-label-wrapper">
-									<label class="post-attributes-label" for="job_type"><?php esc_attr_e( 'Type', self::DOMAIN ) ?></label>
+									<label class="post-attributes-label" for="job_type">Type</label>
 								</p>
 								<select name="job_type" id="job_type">
 									<option value="">(job type)</option>
@@ -118,7 +103,7 @@ $currencies = $Currency->get_currencies();
 								</select>
 
 								<p class="post-attributes-label-wrapper">
-									<label class="post-attributes-label" for="salary_type"><?php esc_attr_e( 'Salary Type', self::DOMAIN ) ?></label>
+									<label class="post-attributes-label" for="salary_type">Salary Type</label>
 								</p>
 								<select name="salary_type" id="salary_type">
 									<option value="">(salary type)</option>
@@ -128,15 +113,15 @@ $currencies = $Currency->get_currencies();
 								</select>
 
 								<p class="post-attributes-label-wrapper">
-									<label class="post-attributes-label" for="salary"><?php esc_attr_e( 'Salary', self::DOMAIN ) ?></label>
+									<label class="post-attributes-label" for="salary">Salary</label>
 								</p>
 								<input type="number" step="0.01" name="salary" id="salary" value="<?php echo esc_attr( $row['salary'] ); ?>">
 
 								<p class="post-attributes-label-wrapper">
-									<label for="currency" class="post-attributes-label"><?php esc_attr_e( 'Currency', self::DOMAIN ) ?></label>
+									<label for="currency" class="post-attributes-label">Currency</label>
 								</p>
 								<select name="currency_code" id="currency_code">
-									<option value="">(<?php esc_attr_e( 'parent currency from settings', self::DOMAIN ) ?>)</option>
+									<option value="">(parent currency from settings)</option>
 									<?php foreach ( $currencies as $currency ) { ?>
 										<option <?php echo $row['currency_code'] == $currency['code'] ? 'selected' : '' ?> value="<?php echo $currency['code'] ?>">
 											<?php echo $currency['code'] . ' (' . $currency['name'] . ') ' . $currency['symbol'] ?>
@@ -145,7 +130,7 @@ $currencies = $Currency->get_currencies();
 								</select>
 
 								<p class="post-attributes-label-wrapper">
-									<label class="post-attributes-label" for="is_active"><?php esc_attr_e( 'Active', self::DOMAIN ) ?></label>
+									<label class="post-attributes-label" for="is_active">Active</label>
 								</p>
 								<select id="is_active" name="is_active" required="required">
 									<option value="1">Yes</option>
@@ -160,7 +145,7 @@ $currencies = $Currency->get_currencies();
 							<button type="button" class="handlediv" aria-expanded="true">
 								<span class="screen-reader-text">Toggle panel: Save</span><span class="toggle-indicator" aria-hidden="true"></span>
 							</button>
-							<h2 class="hndle"><span><?php esc_attr_e( 'Save', self::DOMAIN ) ?></span></h2>
+							<h2 class="hndle"><span>Save</span></h2>
 							<div class="inside">
 								<div class="submitbox" id="submitpost">
 									<div id="minor-publishing">
@@ -184,12 +169,12 @@ $currencies = $Currency->get_currencies();
 
 										<div id="major-publishing-actions">
 											<div id="delete-action">
-												<a class="submitdelete" href="?page=SAjobsF_jobs_management"><?php esc_attr_e( 'Cancel' ) ?></a>
+												<a class="submitdelete" href="?page=SAjobsF_jobs_management">Cancel</a>
 											</div>
 
 											<div id="publishing-action">
 												<span class="spinner"></span>
-												<input type="submit" name="publish" id="publish" class="button button-primary button-large" value="<?php esc_attr_e( 'Save', self::DOMAIN ) ?>" />
+												<input type="submit" name="publish" id="publish" class="button button-primary button-large" value="Save" />
 											</div>
 											<div class="clear"></div>
 										</div>
